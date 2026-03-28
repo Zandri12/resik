@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Daftar Pengeluaran - Resik Laundry</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary-fixed-variant": "#00504a",
+                        "on-primary-fixed": "#001f26",
+                        "surface-container-highest": "#e1e3e4",
+                        "secondary": "#006a63",
+                        "inverse-primary": "#84d2e7",
+                        "outline": "#6f797c",
+                        "tertiary-fixed": "#ffdcc1",
+                        "on-surface": "#191c1d",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb779",
+                        "on-surface-variant": "#3f484b",
+                        "surface-tint": "#00687a",
+                        "tertiary-container": "#8b541e",
+                        "surface-dim": "#d9dadb",
+                        "inverse-surface": "#2e3132",
+                        "outline-variant": "#bec8cc",
+                        "on-secondary-fixed": "#00201d",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#e1e3e4",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#6e3d06",
+                        "secondary-fixed-dim": "#71d7cd",
+                        "secondary-fixed": "#8ef4e9",
+                        "on-background": "#191c1d",
+                        "secondary-container": "#8bf1e6",
+                        "on-error-container": "#93000a",
+                        "background": "#f8f9fa",
+                        "surface": "#f8f9fa",
+                        "primary": "#005160",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#9be9ff",
+                        "on-tertiary-fixed-variant": "#6b3a04",
+                        "on-tertiary-container": "#ffd5b4",
+                        "primary-fixed-dim": "#84d2e7",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#f8f9fa",
+                        "surface-container-low": "#f3f4f5",
+                        "primary-fixed": "#adecff",
+                        "on-tertiary-fixed": "#2e1500",
+                        "surface-container-high": "#e7e8e9",
+                        "on-secondary-container": "#006f67",
+                        "on-primary-fixed-variant": "#004e5c",
+                        "surface-container": "#edeeef",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#006b7e"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+        h1, h2, h3, .font-headline {
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<div class="flex min-h-screen">
+<!-- Sidebar Navigation -->
+<aside class="w-72 bg-surface-container-low flex flex-col shrink-0">
+<div class="p-8 flex flex-col gap-8 h-full">
+<!-- Brand Header -->
+<div class="flex gap-3 items-center">
+<div class="bg-primary size-10 rounded-xl flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined">waves</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-on-surface text-base font-bold leading-tight">Resik Laundry</h1>
+<p class="text-on-surface-variant text-xs font-medium">Management System</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex flex-col gap-1">
+<div class="flex items-center gap-3 px-3 py-3 text-on-surface-variant hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<p class="text-sm font-medium">Dashboard</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-3 text-on-surface-variant hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="local_laundry_service">local_laundry_service</span>
+<p class="text-sm font-medium">Layanan</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-3 text-on-surface-variant hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<p class="text-sm font-medium">Pesanan</p>
+</div>
+<!-- Active State: Pengeluaran -->
+<div class="flex items-center gap-3 px-3 py-3 text-primary border-l-2 border-primary bg-surface-container-high rounded-r-lg">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+<p class="text-sm font-bold">Pengeluaran</p>
+</div>
+<div class="flex items-center gap-3 px-3 py-3 text-on-surface-variant hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="bar_chart">bar_chart</span>
+<p class="text-sm font-medium">Laporan</p>
+</div>
+</nav>
+<div class="mt-auto pt-8 border-t border-outline-variant/20">
+<div class="flex items-center gap-3 px-3 py-3 text-on-surface-variant hover:text-error transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<p class="text-sm font-medium">Keluar</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto">
+<div class="p-10 max-w-[1200px] mx-auto">
+<!-- Header Section -->
+<header class="flex justify-between items-start mb-10">
+<div class="flex flex-col gap-2">
+<h2 class="text-on-surface text-4xl font-extrabold tracking-tight font-headline">Daftar Pengeluaran</h2>
+<p class="text-on-surface-variant text-base">Kelola dan pantau semua pengeluaran operasional laundry Anda secara efisien.</p>
+</div>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-sm hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+                        Tambah Pengeluaran
+                    </button>
+</header>
+<!-- Summary Cards -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/20">
+<div class="flex justify-between items-start mb-4">
+<p class="text-on-surface-variant text-sm font-medium">Total Pengeluaran Bulan Ini</p>
+<span class="text-secondary p-1.5 bg-secondary-container/30 rounded-lg material-symbols-outlined" data-icon="trending_up">trending_up</span>
+</div>
+<p class="text-on-surface text-3xl font-bold font-headline mb-1">Rp 4.520.000</p>
+<p class="text-secondary text-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="arrow_upward">arrow_upward</span>
+                            12% dari bulan lalu
+                        </p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/20">
+<div class="flex justify-between items-start mb-4">
+<p class="text-on-surface-variant text-sm font-medium">Kategori Terbesar</p>
+<span class="text-tertiary-container p-1.5 bg-tertiary-fixed/30 rounded-lg material-symbols-outlined" data-icon="category">category</span>
+</div>
+<p class="text-on-surface text-3xl font-bold font-headline mb-1">Deterjen</p>
+<p class="text-on-surface-variant text-sm">35% dari total pengeluaran</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/20">
+<div class="flex justify-between items-start mb-4">
+<p class="text-on-surface-variant text-sm font-medium">Sisa Anggaran</p>
+<span class="text-primary p-1.5 bg-primary-fixed/30 rounded-lg material-symbols-outlined" data-icon="account_balance">account_balance</span>
+</div>
+<p class="text-on-surface text-3xl font-bold font-headline mb-1">Rp 1.480.000</p>
+<p class="text-error text-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="arrow_downward">arrow_downward</span>
+                            Menurun 5%
+                        </p>
+</div>
+</section>
+<!-- Filters & Table Container -->
+<section class="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/20">
+<!-- Filters Header -->
+<div class="p-6 border-b border-outline-variant/10 flex flex-wrap gap-4 items-center justify-between">
+<div class="flex gap-4">
+<div class="relative group">
+<select class="appearance-none bg-surface-container-low border-none rounded-lg py-2 pl-4 pr-10 text-sm font-medium text-on-surface focus:ring-2 focus:ring-surface-tint/40 cursor-pointer">
+<option>Semua Kategori</option>
+<option>Deterjen &amp; Kimia</option>
+<option>Listrik &amp; Air</option>
+<option>Sewa Tempat</option>
+<option>Gaji Karyawan</option>
+<option>Lain-lain</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant" data-icon="expand_more">expand_more</span>
+</div>
+<div class="relative group">
+<input class="bg-surface-container-low border-none rounded-lg py-2 px-4 text-sm font-medium text-on-surface focus:ring-2 focus:ring-surface-tint/40 cursor-pointer" type="date"/>
+</div>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg" data-icon="search">search</span>
+<input class="bg-surface-container-low border-none rounded-lg py-2 pl-10 pr-4 text-sm w-64 focus:ring-2 focus:ring-surface-tint/40" placeholder="Cari deskripsi..." type="text"/>
+</div>
+</div>
+<!-- Expense Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low">
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-on-surface-variant font-label">Tanggal</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-on-surface-variant font-label">Kategori</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-on-surface-variant font-label">Deskripsi</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-on-surface-variant font-label text-right">Jumlah (Rp)</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-on-surface-variant font-label text-center">Aksi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-high/50 transition-colors">
+<td class="px-6 py-5 text-sm font-medium text-on-surface">12 Okt 2023</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-primary-fixed/30 text-on-primary-fixed-variant rounded-full text-xs font-bold">Deterjen</span>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">Pembelian Deterjen Liquid 50L (Persediaan Bulan Depan)</td>
+<td class="px-6 py-5 text-sm font-bold text-on-surface text-right">750.000</td>
+<td class="px-6 py-5 text-center">
+<div class="flex justify-center gap-2">
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="edit">edit</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-high/50 transition-colors">
+<td class="px-6 py-5 text-sm font-medium text-on-surface">10 Okt 2023</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-secondary-container/30 text-on-secondary-container rounded-full text-xs font-bold">Listrik</span>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">Tagihan Listrik PLN Toko Utama</td>
+<td class="px-6 py-5 text-sm font-bold text-on-surface text-right">1.250.000</td>
+<td class="px-6 py-5 text-center">
+<div class="flex justify-center gap-2">
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="edit">edit</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-high/50 transition-colors">
+<td class="px-6 py-5 text-sm font-medium text-on-surface">05 Okt 2023</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-tertiary-fixed/40 text-on-tertiary-fixed-variant rounded-full text-xs font-bold">Gaji</span>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">Gaji Staff Operasional (Admin &amp; Kurir)</td>
+<td class="px-6 py-5 text-sm font-bold text-on-surface text-right">2.000.000</td>
+<td class="px-6 py-5 text-center">
+<div class="flex justify-center gap-2">
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="edit">edit</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-high/50 transition-colors">
+<td class="px-6 py-5 text-sm font-medium text-on-surface">02 Okt 2023</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-outline-variant/30 text-on-surface-variant rounded-full text-xs font-bold">Lain-lain</span>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">Servis Mesin Cuci Samsung Unit #2</td>
+<td class="px-6 py-5 text-sm font-bold text-on-surface text-right">520.000</td>
+<td class="px-6 py-5 text-center">
+<div class="flex justify-center gap-2">
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="edit">edit</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="p-6 bg-surface-container-low/30 border-t border-outline-variant/10 flex items-center justify-between">
+<p class="text-sm text-on-surface-variant">Menampilkan 1-4 dari 24 pengeluaran</p>
+<div class="flex gap-2">
+<button class="size-8 flex items-center justify-center rounded-lg border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="size-8 flex items-center justify-center rounded-lg bg-primary text-on-primary text-sm font-bold shadow-sm">1</button>
+<button class="size-8 flex items-center justify-center rounded-lg border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container-high transition-colors text-sm font-medium">2</button>
+<button class="size-8 flex items-center justify-center rounded-lg border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container-high transition-colors text-sm font-medium">3</button>
+<button class="size-8 flex items-center justify-center rounded-lg border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</body></html>

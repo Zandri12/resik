@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tambah Pelanggan - Resik Laundry Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-container": "#006b7e",
+                        "on-primary-fixed-variant": "#004e5c",
+                        "surface-dim": "#d9dadb",
+                        "surface-variant": "#e1e3e4",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#bec8cc",
+                        "secondary": "#006a63",
+                        "on-tertiary-container": "#ffd5b4",
+                        "tertiary-container": "#8b541e",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#00504a",
+                        "inverse-primary": "#84d2e7",
+                        "secondary-fixed": "#8ef4e9",
+                        "error": "#ba1a1a",
+                        "tertiary": "#6e3d06",
+                        "on-secondary-container": "#006f67",
+                        "primary-fixed": "#adecff",
+                        "on-tertiary-fixed-variant": "#6b3a04",
+                        "on-primary-container": "#9be9ff",
+                        "on-background": "#191c1d",
+                        "on-surface": "#191c1d",
+                        "surface-container-high": "#e7e8e9",
+                        "on-secondary-fixed": "#00201d",
+                        "tertiary-fixed-dim": "#ffb779",
+                        "secondary-container": "#8bf1e6",
+                        "surface-container-low": "#f3f4f5",
+                        "outline": "#6f797c",
+                        "background": "#f8f9fa",
+                        "surface-container": "#edeeef",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "primary": "#005160",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#71d7cd",
+                        "inverse-on-surface": "#f0f1f2",
+                        "primary-fixed-dim": "#84d2e7",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#00687a",
+                        "surface": "#f8f9fa",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed": "#2e1500",
+                        "on-primary-fixed": "#001f26",
+                        "tertiary-fixed": "#ffdcc1",
+                        "on-surface-variant": "#3f484b",
+                        "surface-bright": "#f8f9fa",
+                        "surface-container-highest": "#e1e3e4"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.5rem", "xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .sidebar-active {
+            color: #005160;
+            position: relative;
+        }
+        .sidebar-active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2px;
+            height: 24px;
+            background-color: #005160;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="w-72 bg-surface-container-low flex flex-col sticky top-0 h-screen overflow-y-auto no-scrollbar">
+<div class="px-8 py-10 flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary" data-icon="water_drop">water_drop</span>
+</div>
+<div>
+<h1 class="text-xl font-bold text-primary tracking-tight">Resik</h1>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-semibold">Laundry Management</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="text-sm font-medium">Orders</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 sidebar-active" href="#">
+<span class="material-symbols-outlined" data-icon="group" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="text-sm font-semibold">Pelanggan</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="text-sm font-medium">Expenses</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="bar_chart">bar_chart</span>
+<span class="text-sm font-medium">Reports</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+<div class="p-6 mt-auto">
+<div class="p-4 bg-surface-container-high rounded-xl flex items-center gap-3">
+<img alt="Admin Avatar" class="w-10 h-10 rounded-full object-cover" data-alt="Close up of a professional male admin avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZfJnzopbqwtuOIoe4u-c-4PKKL35qrL6YaKNPvXFb_Wj3WIkglJYBn26bO9jHymeIPwjGq9_nBabvczISVM6XOjOw9LlKKjmq_RJmdAlEvX5PQUomVkORu4BEfDQvKybyrCne-rjGHRXnMZoFlgp5dqIEqWVVXafd4p4a5W8exc0U_a1Q-GYeYgTxKBQclg2THwoF7MUjM6StkWcK5D9NoiY5vBN3jClQ2x6P5Eo9bZkQC2T-qOa8yLAqkgYpYdS2PHDsjHqvP3U"/>
+<div class="overflow-hidden">
+<p class="text-sm font-bold truncate">Admin Resik</p>
+<p class="text-xs text-on-surface-variant">Store Manager</p>
+</div>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col min-w-0 bg-surface">
+<!-- TopNavBar -->
+<header class="h-20 px-10 flex items-center justify-between bg-surface-bright/80 backdrop-blur-md sticky top-0 z-10">
+<div class="flex items-center gap-2 text-on-surface-variant text-sm font-medium">
+<span>Pelanggan</span>
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+<span class="text-on-surface">Tambah Pelanggan Baru</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-sm w-64 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Cari transaksi..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<div class="p-10 max-w-5xl mx-auto w-full">
+<div class="mb-12">
+<h2 class="text-4xl font-extrabold text-primary tracking-tight mb-2">Tambah Pelanggan Baru</h2>
+<p class="text-on-surface-variant">Daftarkan pelanggan baru ke dalam sistem manajemen Resik untuk mulai melayani pesanan mereka.</p>
+</div>
+<!-- Form Container -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+<div class="md:col-span-2 space-y-8">
+<!-- Input Section -->
+<section class="bg-surface-container-lowest p-8 rounded-xl space-y-6">
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant ml-1">Nama Lengkap</label>
+<input class="w-full px-5 py-4 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-primary/40 transition-all text-on-surface placeholder:text-outline-variant" placeholder="Contoh: Budi Santoso" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant ml-1">Nomor Telepon</label>
+<div class="flex gap-2">
+<span class="flex items-center px-4 bg-surface-container-low rounded-lg text-on-surface-variant font-medium text-sm">+62</span>
+<input class="flex-1 px-5 py-4 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-primary/40 transition-all text-on-surface placeholder:text-outline-variant" placeholder="812 3456 7890" type="tel"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant ml-1">Alamat Lengkap</label>
+<textarea class="w-full px-5 py-4 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-primary/40 transition-all text-on-surface placeholder:text-outline-variant resize-none" placeholder="Masukkan detail alamat jalan, nomor rumah, dan kecamatan..." rows="4"></textarea>
+</div>
+</section>
+<!-- Tier Selection -->
+<section class="space-y-4">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant ml-1">Tier Pelanggan</label>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<!-- Bronze Card -->
+<label class="relative cursor-pointer group">
+<input checked="" class="peer sr-only" name="tier" type="radio"/>
+<div class="p-6 bg-surface-container-lowest rounded-xl border-2 border-transparent peer-checked:border-primary peer-checked:bg-primary/5 transition-all flex flex-col items-center text-center">
+<div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center text-orange-700 mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="military_tech">military_tech</span>
+</div>
+<h4 class="font-bold text-on-surface">Bronze</h4>
+<p class="text-[10px] text-on-surface-variant mt-1">Diskon 0% • Dasar</p>
+</div>
+</label>
+<!-- Silver Card -->
+<label class="relative cursor-pointer group">
+<input class="peer sr-only" name="tier" type="radio"/>
+<div class="p-6 bg-surface-container-lowest rounded-xl border-2 border-transparent peer-checked:border-primary peer-checked:bg-primary/5 transition-all flex flex-col items-center text-center">
+<div class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="stars">stars</span>
+</div>
+<h4 class="font-bold text-on-surface">Silver</h4>
+<p class="text-[10px] text-on-surface-variant mt-1">Diskon 5% • Populer</p>
+</div>
+</label>
+<!-- Gold Card -->
+<label class="relative cursor-pointer group">
+<input class="peer sr-only" name="tier" type="radio"/>
+<div class="p-6 bg-surface-container-lowest rounded-xl border-2 border-transparent peer-checked:border-primary peer-checked:bg-primary/5 transition-all flex flex-col items-center text-center">
+<div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center text-amber-600 mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="workspace_premium" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<h4 class="font-bold text-on-surface">Gold</h4>
+<p class="text-[10px] text-on-surface-variant mt-1">Diskon 10% • VIP</p>
+</div>
+</label>
+</div>
+</section>
+<!-- Actions -->
+<div class="flex items-center justify-end gap-4 pt-4">
+<button class="px-8 py-4 text-on-surface-variant font-bold hover:text-primary transition-colors">Batal</button>
+<button class="px-10 py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold rounded-lg shadow-xl shadow-primary/10 hover:shadow-primary/20 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="person_add">person_add</span>
+                            Simpan Pelanggan
+                        </button>
+</div>
+</div>
+<!-- Info Side Panel -->
+<div class="space-y-6">
+<div class="bg-primary/5 p-8 rounded-xl border border-primary/10">
+<span class="material-symbols-outlined text-primary mb-4" data-icon="info">info</span>
+<h4 class="font-bold text-primary mb-2">Mengapa Tier Penting?</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Tier membantu Anda mengelola loyalitas pelanggan. Pelanggan Gold akan mendapatkan prioritas pengerjaan dan diskon otomatis pada setiap transaksi.</p>
+</div>
+<div class="bg-surface-container-low p-8 rounded-xl">
+<h4 class="font-bold mb-4 text-sm uppercase tracking-widest text-on-surface-variant">Statistik Cepat</h4>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-sm text-on-surface-variant">Total Pelanggan</span>
+<span class="font-bold">1,284</span>
+</div>
+<div class="w-full bg-surface-container-high h-1 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-2/3"></div>
+</div>
+<p class="text-[11px] text-on-surface-variant">Kapasitas database pelanggan Anda saat ini berada pada 67%.</p>
+</div>
+</div>
+<div class="relative rounded-xl overflow-hidden aspect-video">
+<img alt="Laundry facility" class="w-full h-full object-cover grayscale opacity-50" data-alt="Abstract minimalist photo of clean white towels in a pile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC659ys7BhJgKqdJa8PcZOPE-2AYTV7O_w-hS8AYHtupAVXOawu70K4Mb30UKg6g5PFokTBxRURG9q53jaAUSqSn8UH-ggZRwsLw_N1zFeCGxqMEEcOnfmAtz5RxGJql9fcFchCXUImt3h6hYtj9JrE4VEyaQ593fOga8cEUNqgD5kQp9vXzIBodmN5jY-EDHPa6NMQwKibyyXo1sm8zM7lqJn7SB2SSyXntgNhbCdJ-gI7K4rUnGKNh2fNuUOMhLR5vdyzdcDQVZQ"/>
+<div class="absolute inset-0 bg-primary/20"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-auto px-10 py-8 flex flex-col md:flex-row justify-between items-center gap-4 bg-surface-container-low/50">
+<p class="text-xs text-on-surface-variant">© 2024 Resik Laundry Management</p>
+<div class="flex gap-6">
+<a class="text-xs text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-xs text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+</div>
+</footer>
+</main>
+</body></html>

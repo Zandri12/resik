@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#ffb779",
+                        "primary-container": "#006b7e",
+                        "surface-dim": "#d9dadb",
+                        "surface-container-low": "#f3f4f5",
+                        "outline-variant": "#bec8cc",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-tertiary-fixed-variant": "#6b3a04",
+                        "tertiary": "#6e3d06",
+                        "secondary-fixed-dim": "#71d7cd",
+                        "on-secondary-fixed-variant": "#00504a",
+                        "background": "#f8f9fa",
+                        "surface-bright": "#f8f9fa",
+                        "on-background": "#191c1d",
+                        "secondary-fixed": "#8ef4e9",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#00687a",
+                        "inverse-primary": "#84d2e7",
+                        "on-primary-fixed": "#001f26",
+                        "secondary-container": "#8bf1e6",
+                        "primary": "#005160",
+                        "primary-fixed-dim": "#84d2e7",
+                        "on-tertiary-container": "#ffd5b4",
+                        "tertiary-fixed": "#ffdcc1",
+                        "on-tertiary-fixed": "#2e1500",
+                        "on-primary": "#ffffff",
+                        "secondary": "#006a63",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#e1e3e4",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#edeeef",
+                        "surface-container-high": "#e7e8e9",
+                        "surface": "#f8f9fa",
+                        "primary-fixed": "#adecff",
+                        "outline": "#6f797c",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#191c1d",
+                        "on-primary-fixed-variant": "#004e5c",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-secondary-fixed": "#00201d",
+                        "tertiary-container": "#8b541e",
+                        "on-surface-variant": "#3f484b",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#9be9ff",
+                        "on-secondary-container": "#006f67",
+                        "inverse-surface": "#2e3132"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .sidebar-pill {
+            width: 3px;
+            height: 24px;
+            background-color: transparent;
+            position: absolute;
+            left: 0;
+            transition: background-color 0.2s;
+        }
+        .sidebar-item-active .sidebar-pill {
+            background-color: #005160;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+        }
+        .btn-gradient {
+            background: linear-gradient(135deg, #005160 0%, #006b7e 100%);
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-surface">
+<div class="flex h-screen overflow-hidden">
+<!-- SideNavBar -->
+<aside class="w-64 bg-surface-container-low flex flex-col h-full shrink-0">
+<div class="p-8">
+<h1 class="font-headline font-extrabold text-2xl text-primary tracking-tight">Resik</h1>
+</div>
+<nav class="flex-1 space-y-2">
+<div class="relative flex items-center px-8 py-3 text-on-surface-variant hover:bg-surface-container-high cursor-pointer transition-colors">
+<div class="sidebar-pill"></div>
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</div>
+<div class="relative flex items-center px-8 py-3 text-on-surface-variant hover:bg-surface-container-high cursor-pointer transition-colors">
+<div class="sidebar-pill"></div>
+<span class="material-symbols-outlined mr-3">receipt_long</span>
+<span class="font-medium">Orders</span>
+</div>
+<div class="relative flex items-center px-8 py-3 text-on-surface-variant hover:bg-surface-container-high cursor-pointer transition-colors">
+<div class="sidebar-pill"></div>
+<span class="material-symbols-outlined mr-3">group</span>
+<span class="font-medium">Customers</span>
+</div>
+<div class="relative flex items-center px-8 py-3 text-primary sidebar-item-active bg-surface-container cursor-pointer">
+<div class="sidebar-pill"></div>
+<span class="material-symbols-outlined mr-3" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span class="font-medium">Expenses</span>
+</div>
+<div class="relative flex items-center px-8 py-3 text-on-surface-variant hover:bg-surface-container-high cursor-pointer transition-colors">
+<div class="sidebar-pill"></div>
+<span class="material-symbols-outlined mr-3">analytics</span>
+<span class="font-medium">Reports</span>
+</div>
+<div class="relative flex items-center px-8 py-3 text-on-surface-variant hover:bg-surface-container-high cursor-pointer transition-colors">
+<div class="sidebar-pill"></div>
+<span class="material-symbols-outlined mr-3">settings</span>
+<span class="font-medium">Settings</span>
+</div>
+</nav>
+<div class="p-8 mt-auto">
+<div class="flex items-center gap-3 p-3 bg-surface-container-lowest rounded-xl shadow-sm">
+<img alt="User Profile" class="w-10 h-10 rounded-full object-cover" data-alt="User profile avatar smiling professional" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJPxaJFF_MMMEBmctm37cqMBYzuab1hGQwajqGA0ItbYn_LTOEPewSiLB2ZhcK4-C2_bYFX91IbrWEqj-Fo4U2wCyyHmul_gkPCKUp-ldWbWIat0LdrhcFsKZxz4MORbGiRfm3qkDIgO2VmTtRNlXXXrEx7rvRn7ghN_FdPeaqTJ_iS_Ht1B4R1KAiv4Hy0Q29ecj-GVenwfG_RpDRvaHYooedEvkizTZQNgeYEvE2QbaXFuMF5XL2_2MekI6jlDixJQgn-giZu7A"/>
+<div class="overflow-hidden">
+<p class="text-xs font-bold truncate">Admin Resik</p>
+<p class="text-[10px] text-on-surface-variant truncate">Operational Manager</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col overflow-hidden">
+<!-- TopNavBar -->
+<header class="h-20 flex items-center justify-between px-10 shrink-0">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-3 pl-12 pr-4 focus:ring-2 focus:ring-surface-tint focus:ring-opacity-40 text-sm" placeholder="Cari transaksi atau data..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4 ml-6">
+<button class="w-12 h-12 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors relative">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<span class="absolute top-3 right-3 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant opacity-20 mx-2"></div>
+<div class="flex items-center gap-3">
+<span class="text-sm font-semibold">Cabang Sudirman</span>
+<span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<section class="flex-1 overflow-y-auto p-10 pt-4">
+<div class="max-w-6xl mx-auto">
+<div class="mb-10">
+<div class="flex items-center gap-2 text-on-surface-variant mb-2">
+<span class="text-xs font-medium uppercase tracking-widest">Manajemen Keuangan</span>
+</div>
+<h2 class="font-headline font-bold text-4xl text-on-surface">Tambah Pengeluaran</h2>
+<p class="text-on-surface-variant mt-2 max-w-2xl">Catat setiap pengeluaran operasional dengan detail untuk menjaga akurasi laporan keuangan Anda.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+<!-- Main Form -->
+<div class="lg:col-span-8 space-y-8">
+<div class="bg-surface-container-lowest p-8 rounded-xl space-y-8">
+<!-- Basic Info -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-sm font-semibold text-on-surface-variant px-1">Nama Pengeluaran</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg py-3 px-4 focus:ring-2 focus:ring-surface-tint/40 text-on-surface" placeholder="Misal: Pembelian Deterjen" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-on-surface-variant px-1">Kategori</label>
+<select class="w-full bg-surface-container-low border-none rounded-lg py-3 px-4 focus:ring-2 focus:ring-surface-tint/40 text-on-surface appearance-none">
+<option>Bahan Baku &amp; Kimia</option>
+<option>Utilitas (Listrik/Air)</option>
+<option>Gaji Karyawan</option>
+<option>Pemeliharaan Alat</option>
+<option>Lain-lain</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-on-surface-variant px-1">Tanggal</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border-none rounded-lg py-3 px-4 focus:ring-2 focus:ring-surface-tint/40 text-on-surface" type="date"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-on-surface-variant px-1">Jumlah (Rp)</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 font-semibold text-on-surface-variant">Rp</span>
+<input class="w-full bg-surface-container-low border-none rounded-lg py-3 pl-12 pr-4 focus:ring-2 focus:ring-surface-tint/40 text-on-surface font-bold" placeholder="0" type="number"/>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-on-surface-variant px-1">Catatan Tambahan</label>
+<textarea class="w-full bg-surface-container-low border-none rounded-lg py-3 px-4 focus:ring-2 focus:ring-surface-tint/40 text-on-surface" placeholder="Tuliskan deskripsi detail pengeluaran di sini..." rows="4"></textarea>
+</div>
+<!-- Receipt Upload -->
+<div class="space-y-4">
+<label class="text-sm font-semibold text-on-surface-variant px-1">Bukti Nota / Resi</label>
+<div class="border-2 border-dashed border-outline-variant/30 bg-surface-container-low/50 rounded-xl p-8 flex flex-col items-center justify-center text-center group hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="w-16 h-16 bg-surface-container-lowest rounded-full flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">cloud_upload</span>
+</div>
+<p class="font-semibold text-on-surface">Klik untuk unggah atau seret file ke sini</p>
+<p class="text-xs text-on-surface-variant mt-1">PNG, JPG atau PDF (Maks. 5MB)</p>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex items-center justify-end gap-4 pt-4">
+<button class="px-8 py-3 text-sm font-bold text-on-surface-variant hover:text-on-surface transition-colors">
+                                    Batal
+                                </button>
+<button class="btn-gradient px-10 py-3 rounded-lg text-sm font-bold text-on-primary shadow-lg hover:brightness-110 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">save</span>
+                                    Simpan Pengeluaran
+                                </button>
+</div>
+</div>
+<!-- Sidebar Widgets -->
+<div class="lg:col-span-4 space-y-6">
+<!-- Summary Widget -->
+<div class="bg-primary text-on-primary p-8 rounded-xl shadow-xl overflow-hidden relative">
+<div class="relative z-10">
+<p class="text-xs font-medium uppercase tracking-widest opacity-80 mb-2">Total Pengeluaran Bulan Ini</p>
+<h3 class="font-headline font-bold text-3xl">Rp 12.450.000</h3>
+<div class="flex items-center gap-2 mt-4 bg-white/10 w-fit px-3 py-1 rounded-full text-xs">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+5.2% dari bulan lalu</span>
+</div>
+</div>
+<div class="absolute -bottom-6 -right-6 opacity-10">
+<span class="material-symbols-outlined text-9xl">payments</span>
+</div>
+</div>
+<!-- Recent Expenses -->
+<div class="bg-surface-container-lowest p-6 rounded-xl space-y-6">
+<div class="flex items-center justify-between">
+<h4 class="font-bold text-on-surface">Pengeluaran Terakhir</h4>
+<button class="text-xs font-bold text-primary">Lihat Semua</button>
+</div>
+<div class="space-y-5">
+<!-- Item 1 -->
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 bg-secondary-container rounded-lg flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-secondary-container">water_drop</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-bold truncate">Token Listrik &amp; Air</p>
+<p class="text-[10px] text-on-surface-variant font-medium">12 Okt • Utilitas</p>
+</div>
+<p class="text-sm font-bold text-error">Rp 450k</p>
+</div>
+<!-- Item 2 -->
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 bg-tertiary-fixed rounded-lg flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-tertiary-fixed-variant">science</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-bold truncate">Deterjen 20L (5 Pcs)</p>
+<p class="text-[10px] text-on-surface-variant font-medium">10 Okt • Bahan Baku</p>
+</div>
+<p class="text-sm font-bold text-error">Rp 1.250k</p>
+</div>
+<!-- Item 3 -->
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 bg-surface-container rounded-lg flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant">build</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-bold truncate">Servis Mesin Pengering</p>
+<p class="text-[10px] text-on-surface-variant font-medium">08 Okt • Pemeliharaan</p>
+</div>
+<p class="text-sm font-bold text-error">Rp 850k</p>
+</div>
+</div>
+</div>
+<!-- Context Banner -->
+<div class="bg-secondary-container/30 p-6 rounded-xl flex gap-4">
+<span class="material-symbols-outlined text-primary shrink-0">info</span>
+<div class="text-xs leading-relaxed text-on-secondary-container font-medium">
+                                    Pastikan setiap pengeluaran di atas <span class="font-bold">Rp 1.000.000</span> melampirkan foto nota fisik untuk keperluan audit.
+                                </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+</body></html>

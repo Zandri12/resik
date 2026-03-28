@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Masuk - Resik Laundry</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "on-secondary": "#ffffff",
+                "on-secondary-fixed-variant": "#00504a",
+                "primary-fixed-dim": "#84d2e7",
+                "inverse-surface": "#2e3132",
+                "secondary-fixed-dim": "#71d7cd",
+                "on-tertiary-fixed-variant": "#6b3a04",
+                "secondary": "#006a63",
+                "on-tertiary": "#ffffff",
+                "inverse-primary": "#84d2e7",
+                "on-background": "#191c1d",
+                "on-secondary-container": "#006f67",
+                "on-tertiary-container": "#ffd5b4",
+                "tertiary-fixed": "#ffdcc1",
+                "tertiary-container": "#8b541e",
+                "on-surface-variant": "#3f484b",
+                "error-container": "#ffdad6",
+                "surface-bright": "#f8f9fa",
+                "surface-variant": "#e1e3e4",
+                "surface": "#f8f9fa",
+                "error": "#ba1a1a",
+                "secondary-container": "#8bf1e6",
+                "surface-tint": "#00687a",
+                "on-error": "#ffffff",
+                "on-primary": "#ffffff",
+                "on-primary-container": "#9be9ff",
+                "on-tertiary-fixed": "#2e1500",
+                "surface-container-low": "#f3f4f5",
+                "surface-container-highest": "#e1e3e4",
+                "on-secondary-fixed": "#00201d",
+                "primary": "#005160",
+                "surface-container": "#edeeef",
+                "surface-container-lowest": "#ffffff",
+                "tertiary": "#6e3d06",
+                "on-primary-fixed-variant": "#004e5c",
+                "surface-dim": "#d9dadb",
+                "tertiary-fixed-dim": "#ffb779",
+                "on-primary-fixed": "#001f26",
+                "primary-container": "#006b7e",
+                "secondary-fixed": "#8ef4e9",
+                "inverse-on-surface": "#f0f1f2",
+                "on-error-container": "#93000a",
+                "background": "#f8f9fa",
+                "outline": "#6f797c",
+                "outline-variant": "#bec8cc",
+                "primary-fixed": "#adecff",
+                "on-surface": "#191c1d",
+                "surface-container-high": "#e7e8e9"
+              },
+              fontFamily: {
+                "headline": ["Manrope", "sans-serif"],
+                "body": ["Inter", "sans-serif"],
+                "label": ["Inter", "sans-serif"]
+              },
+              borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+            },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #005160 0%, #006b7e 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<div class="flex min-h-screen flex-col items-center justify-center p-6 sm:p-12">
+<!-- Main Layout Container -->
+<div class="flex w-full max-w-[1200px] flex-col overflow-hidden lg:flex-row lg:bg-surface-container-low lg:rounded-xl">
+<!-- Left Branding Side (Hidden on Mobile) -->
+<div class="hidden lg:flex lg:w-1/2 flex-col justify-center p-16 bg-surface-container-low">
+<div class="mb-12 flex items-center gap-4 text-primary">
+<div class="size-8">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h1 class="font-headline text-2xl font-bold tracking-tight">Resik Laundry</h1>
+</div>
+<h2 class="font-headline text-5xl font-black leading-tight tracking-tight text-on-surface mb-6">
+                    Kesegaran yang <span class="text-primary">Terorganisir.</span>
+</h2>
+<p class="text-lg text-on-surface-variant font-normal leading-relaxed max-w-md">
+                    Kelola operasional laundry Anda dengan presisi dan kemudahan dalam satu platform yang bersih dan efisien.
+                </p>
+<div class="mt-12 w-full aspect-square max-w-sm rounded-xl overflow-hidden bg-surface-container-lowest" data-alt="Abstract laundry patterns and textures illustration">
+<div class="h-full w-full bg-cover bg-center opacity-80" data-alt="Minimalist abstract blue and green laundry textures" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB9gN3d3MVhzQxFInxPYYY8gorKxdn23i39XvOhAbzbMOIhCbs1NY7n1xzKpQW1RSg66X3gUuPKDPeKqx3DjhnUoHJ7v5wo2d9XnKCldvc3e8Jl2gNreJ50DCuMb5asH6mrXy6KxhGDILA2Igq7heeNWYjcNKDV7b9VE21W-dT-0fHWLpIRuXvOGyT6SW4kHBSs26aHWIHVcI0Bp7C9R13-NeHzGbc3WB5lvntMLhoF5P3f8S9qzgDNdaV1AoaEUu72RHwK09MJAEk')"></div>
+</div>
+</div>
+<!-- Right Login Form Side -->
+<div class="flex flex-1 flex-col justify-center bg-surface-container-lowest p-8 sm:p-16 lg:rounded-r-xl">
+<!-- Mobile Logo -->
+<div class="flex items-center gap-3 text-primary lg:hidden mb-12">
+<div class="size-6">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="font-headline text-xl font-bold">Resik Laundry</h2>
+</div>
+<div class="mx-auto w-full max-w-md">
+<div class="mb-10">
+<h3 class="font-headline text-3xl font-black tracking-tight text-on-surface mb-2">Masuk</h3>
+<p class="text-on-surface-variant text-base">Silakan masuk ke akun Anda untuk melanjutkan</p>
+</div>
+<form class="space-y-6">
+<!-- Email Field -->
+<div class="space-y-2">
+<label class="font-label text-sm font-medium text-on-surface-variant ml-1">Email atau Username</label>
+<div class="relative">
+<input class="w-full h-14 bg-surface-container-low border-0 rounded-xl px-4 text-on-surface focus:ring-2 focus:ring-surface-tint/40 placeholder:text-outline" placeholder="admin@resik.com" type="text"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-2">
+<label class="font-label text-sm font-medium text-on-surface-variant ml-1">Kata Sandi</label>
+<div class="relative flex items-center">
+<input class="w-full h-14 bg-surface-container-low border-0 rounded-xl px-4 text-on-surface focus:ring-2 focus:ring-surface-tint/40 placeholder:text-outline" placeholder="••••••••" type="password"/>
+<button class="absolute right-4 text-on-surface-variant hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined" data-icon="eye">table_eye</span>
+</button>
+</div>
+</div>
+<!-- Options Field -->
+<div class="flex items-center justify-between">
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="relative flex items-center">
+<input class="peer h-5 w-5 rounded border-outline-variant bg-surface-container-low text-primary focus:ring-0 focus:ring-offset-0 transition-all" type="checkbox"/>
+</div>
+<span class="text-sm font-medium text-on-surface-variant group-hover:text-on-surface transition-colors">Ingat Saya</span>
+</label>
+<a class="text-sm font-semibold text-primary hover:underline" href="#">Lupa sandi?</a>
+</div>
+<!-- Submit Button -->
+<button class="primary-gradient w-full h-14 rounded-xl text-on-primary font-headline font-bold text-lg shadow-lg shadow-primary/10 hover:shadow-primary/20 transition-all flex items-center justify-center gap-2" type="submit">
+                            Masuk
+                            <span class="material-symbols-outlined text-[20px]" data-icon="login">login</span>
+</button>
+</form>
+<!-- Footer Links -->
+<div class="mt-12 pt-8 text-center">
+<p class="text-on-surface-variant text-sm">
+                            Belum memiliki akun? 
+                            <a class="font-bold text-secondary hover:text-primary transition-colors ml-1" href="#">Hubungi Admin</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Minimal Footer -->
+<footer class="mt-12 text-center text-outline text-xs">
+<p>© 2024 Resik Laundry Management. All rights reserved.</p>
+</footer>
+</div>
+</body></html>
