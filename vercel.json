@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "framework": null,
+  "installCommand": "cd backend && composer install --no-dev --optimize-autoloader --no-interaction && cd ../frontend && npm ci",
+  "builds": [
+    {
+      "src": "backend/api/index.php",
+      "use": "vercel-php@0.6.2"
+    },
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
+    }
+  ],
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/api/(.*)", "dest": "/backend/api/index.php" },
+    { "src": "/sanctum/(.*)", "dest": "/backend/api/index.php" },
+    { "src": "/storage/(.*)", "dest": "/backend/api/index.php" },
+    { "src": "/up", "dest": "/backend/api/index.php" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ],
+  "env": {
+    "APP_ENV": "production",
+    "APP_DEBUG": "false",
+    "LOG_CHANNEL": "stderr",
+    "VIEW_COMPILED_PATH": "/tmp",
+    "APP_CONFIG_CACHE": "/tmp/config.php",
+    "APP_EVENTS_CACHE": "/tmp/events.php",
+    "APP_PACKAGES_CACHE": "/tmp/packages.php",
+    "APP_ROUTES_CACHE": "/tmp/routes.php",
+    "APP_SERVICES_CACHE": "/tmp/services.php"
+  }
+}
