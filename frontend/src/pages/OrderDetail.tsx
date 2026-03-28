@@ -6,6 +6,7 @@ import { waMeHrefFromPhone } from '@/lib/phone'
 import { cn } from '@/lib/utils'
 import { orderStatusLabel } from '@/lib/orderStatusDisplay'
 import { paymentMethodLabel, PAYMENT_METHODS } from '@/lib/paymentMethods'
+import { storagePublicURL } from '@/lib/backendUrl'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import {
@@ -786,7 +787,7 @@ export default function OrderDetail() {
                 {orderImages.map((img) => (
                   <div key={img.id} className="relative group">
                     <img
-                      src={`/storage/${img.path}`}
+                      src={storagePublicURL(img.path)}
                       alt="Bukti"
                       className="w-24 h-24 object-cover rounded-xl border border-outline-variant/30"
                     />
