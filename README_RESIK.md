@@ -1,10 +1,10 @@
 # Resik — Laundry Management
 
-Aplikasi manajemen laundry: Laravel API + React SPA.
+Aplikasi manajemen laundry: Laravel + React SPA dalam satu proyek (`backend/`).
 
 ## Stack
-- Backend: Laravel 12, Sanctum, PostgreSQL
-- Frontend: React 19, Vite, Tailwind CSS, React Router
+- Laravel 12, Sanctum, PostgreSQL
+- React 19, Vite, Tailwind CSS, React Router (sumber di `backend/resources/js`)
 
 ## Setup
 
@@ -27,7 +27,14 @@ php artisan migrate --force
 php artisan db:seed --force
 php artisan serve
 ```
-Backend: http://localhost:8000
+Aplikasi: http://localhost:8000
+
+**Pengembangan UI (hot reload Vite):** di terminal lain, dari folder `backend`:
+```bash
+npm install
+npm run dev
+```
+Tanpa `npm run dev`, setelah `npm run build` aset di `public/build` dilayani langsung oleh Laravel.
 
 **Agar summary card dashboard terisi** (Order Hari Ini, Pendapatan, dll.), jalankan seeder demo:
 ```bash
@@ -36,14 +43,6 @@ php artisan db:seed --class=DashboardDemoSeeder
 php artisan dashboard:seed-demo
 ```
 Pastikan `APP_TIMEZONE=Asia/Jakarta` di `.env`.
-
-### 3. Frontend (React)
-```bash
-cd frontend
-npm install
-npm run dev
-```
-Frontend: http://localhost:5173 (proxy API ke backend)
 
 ### Login
 - Email: `owner@resik.local`

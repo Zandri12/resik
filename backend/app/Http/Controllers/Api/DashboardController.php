@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Expense;
 use App\Models\Order;
 use App\Models\OrderStatus;
+use App\Models\OutletSetting;
 use App\Support\Cashflow;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -13,30 +14,55 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
+    /** Maks. hari untuk filter `from`+`to` (selaras dengan weekly-trend). */
+    public const MAX_CUSTOM_RANGE_DAYS = 92;
+
     public function index(Request $request)
     {
-        $period = $request->get('period', 'today'); // today, week, month
+        $period = $request->get('period', 'today'); // today, week, month, custom
         $today = Carbon::today();
 
-        if ($period === 'today') {
-            $start = $today;
-            $end = $today;
+        $fromInput = $request->get('from');
+        $toInput = $request->get('to');
+
+        if ($fromInput xor $toInput) {
+            return response()->json(['message' => 'Parameter from dan to harus dikirim berpasangan.'], 422);
+        }
+
+        if ($fromInput && $toInput) {
+            $start = Carbon::parse($fromInput)->startOfDay();
+            $end = Carbon::parse($toInput)->startOfDay();
+            if ($start->gt($end)) {
+                return response()->json(['message' => 'Tanggal mulai harus sebelum atau sama dengan tanggal akhir.'], 422);
+            }
+            $span = (int) $start->diffInDays($end) + 1;
+            if ($span > self::MAX_CUSTOM_RANGE_DAYS) {
+                $end = $start->copy()->addDays(self::MAX_CUSTOM_RANGE_DAYS - 1)->startOfDay();
+            }
+            $period = 'custom';
+        } elseif ($period === 'today') {
+            $start = $today->copy();
+            $end = $today->copy();
         } elseif ($period === 'week') {
             $start = $today->copy()->startOfWeek();
-            $end = $today;
-        } else {
+            $end = $today->copy();
+        } elseif ($period === 'month') {
             $start = $today->copy()->startOfMonth();
-            $end = $today;
+            $end = $today->copy();
+        } else {
+            return response()->json(['message' => 'period harus today, week, atau month jika from/to tidak dipakai.'], 422);
         }
 
         $completedStatusId = OrderStatus::where('name', 'selesai')->value('id')
             ?? OrderStatus::where('name', 'diambil')->value('id');
         $batalStatusId = OrderStatus::where('name', 'batal')->value('id') ?? 0;
 
-        if ($period === 'today') {
+        $useTodayDateOnly = ($period === 'today' && ! ($fromInput && $toInput));
+
+        if ($useTodayDateOnly) {
             $ordersQuery = Order::whereDate('created_at', $today);
         } else {
-            $ordersQuery = Order::whereBetween('created_at', [$start, $end->endOfDay()]);
+            $ordersQuery = Order::whereBetween('created_at', [$start->copy()->startOfDay(), $end->copy()->endOfDay()]);
         }
 
         $ordersCount = (clone $ordersQuery)->count();
@@ -44,11 +70,11 @@ class DashboardController extends Controller
         $income = $completedStatusId
             ? (float) (clone $ordersQuery)->where('status_id', $completedStatusId)->sum('total')
             : 0.0;
-        $expenses = Expense::whereBetween('expense_date', [$start, $end])->sum('amount');
+        $expenses = Expense::whereBetween('expense_date', [$start->toDateString(), $end->toDateString()])->sum('amount');
         $profitAccrual = $income - $expenses;
 
         $cashStart = $start->copy()->startOfDay();
-        $cashEnd = $period === 'today' ? $today->copy()->endOfDay() : $end->copy()->endOfDay();
+        $cashEnd = $end->copy()->endOfDay();
         $cashReceived = Cashflow::cashReceivedBetween($cashStart, $cashEnd);
         $profit = $cashReceived - $expenses;
 
@@ -66,16 +92,20 @@ class DashboardController extends Controller
         $receivables = (float) ($receivablesQuery->sum(DB::raw('total - paid')) ?? 0);
 
         $excludeStatus = array_values(array_filter([$completedStatusId, $batalStatusId]));
+        // Selaras rentang ringkasan: order dibuat antara $start–$end, belum selesai/batal.
         $pendingOrders = count($excludeStatus)
-            ? Order::whereNotIn('status_id', $excludeStatus)->whereDate('created_at', $today)->count()
-            : Order::whereDate('created_at', $today)->count();
+            ? (int) (clone $ordersQuery)->whereNotIn('status_id', $excludeStatus)->count()
+            : (int) (clone $ordersQuery)->count();
 
         $deliveredOrders = $completedStatusId
-            ? Order::whereDate('created_at', $today)->where('status_id', $completedStatusId)->count()
+            ? (int) (clone $ordersQuery)->where('status_id', $completedStatusId)->count()
             : 0;
 
         $statuses = OrderStatus::orderBy('sort_order')->get(['id', 'name']);
-        $countsByStatus = Order::whereDate('created_at', $today)
+        // Sama dengan rentang ringkasan / filter (bukan dipotong ke “hari ini” saja).
+        $statusRangeStart = $start->copy()->startOfDay();
+        $statusRangeEnd = $end->copy()->endOfDay();
+        $countsByStatus = Order::whereBetween('created_at', [$statusRangeStart, $statusRangeEnd])
             ->selectRaw('status_id, count(*) as c')
             ->groupBy('status_id')
             ->pluck('c', 'status_id');
@@ -84,8 +114,15 @@ class DashboardController extends Controller
             'count' => (int) ($countsByStatus[$s->id] ?? 0),
         ])->values()->all();
 
+        $budgetRaw = OutletSetting::get('expense_budget_target', '0');
+        $expenseBudgetTarget = is_numeric($budgetRaw)
+            ? (float) $budgetRaw
+            : (float) preg_replace('/\D/', '', (string) $budgetRaw);
+
         return response()->json([
             'period' => $period,
+            'range_start' => $start->format('Y-m-d'),
+            'range_end' => $end->format('Y-m-d'),
             'orders_count' => $ordersCount,
             'gross_total' => $grossTotal,
             'income' => (float) $income,
@@ -100,6 +137,8 @@ class DashboardController extends Controller
             'total_paid' => $total_paid,
             'receivables' => $receivables,
             'orders_by_status' => $orders_by_status,
+            'expense_budget_target' => $expenseBudgetTarget,
+            'budget_remaining' => $expenseBudgetTarget > 0 ? $expenseBudgetTarget - (float) $expenses : null,
         ]);
     }
 
@@ -116,7 +155,7 @@ class DashboardController extends Controller
                 return response()->json(['message' => 'from_date must be before or equal to to_date'], 400);
             }
             $daysDiff = $fromDate->diffInDays($toDate) + 1;
-            $maxDays = 31;
+            $maxDays = self::MAX_CUSTOM_RANGE_DAYS;
             if ($daysDiff > $maxDays) {
                 $toDate = $fromDate->copy()->addDays($maxDays - 1);
             }
@@ -190,7 +229,10 @@ class DashboardController extends Controller
             ?? OrderStatus::where('name', 'diambil')->value('id');
         $statuses = OrderStatus::orderBy('sort_order')->get(['id', 'name']);
 
-        $endMonth = Carbon::today()->startOfMonth();
+        $throughInput = $request->get('through_date');
+        $endMonth = $throughInput
+            ? Carbon::parse($throughInput)->startOfMonth()
+            : Carbon::today()->startOfMonth();
         $monthsData = [];
         for ($i = $months - 1; $i >= 0; $i--) {
             $monthStart = $endMonth->copy()->subMonths($i);

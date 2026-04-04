@@ -7,6 +7,7 @@ use App\Models\OutletSetting;
 use App\Services\TelegramNotificationService;
 use App\Services\WhatsAppNotificationService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class OutletSettingController extends Controller
 {
@@ -28,11 +29,34 @@ class OutletSettingController extends Controller
             $address = OutletSetting::DEFAULT_LANDING_ADDRESS;
         }
 
+        $heroRaw = trim((string) (OutletSetting::get('landing_hero_url', '') ?? ''));
+        $landingHeroUrl = $heroRaw !== '' ? $this->resolvePublicMediaUrl($heroRaw) : null;
+
         return response()->json([
             'outlet_name' => OutletSetting::get('outlet_name', 'Resik Laundry'),
             'address' => $address,
             'phone' => (string) (OutletSetting::get('phone', '') ?? ''),
+            'landing_hero_url' => $landingHeroUrl,
         ]);
+    }
+
+    /** URL absolut https atau path di disk `public` (mis. hasil unggah ke storage). */
+    private function resolvePublicMediaUrl(string $raw): ?string
+    {
+        if (preg_match('#^https?://#i', $raw)) {
+            return $raw;
+        }
+
+        $path = str_replace('\\', '/', $raw);
+        $path = ltrim($path, '/');
+        if (str_starts_with($path, 'storage/')) {
+            $path = substr($path, strlen('storage/'));
+        }
+        if ($path === '' || str_contains($path, '..')) {
+            return null;
+        }
+
+        return Storage::disk('public')->url($path);
     }
 
     public function update(Request $request)

@@ -6,7 +6,7 @@
 
 ## Apa itu Resik?
 
-**Resik** adalah aplikasi untuk mengurus usaha laundry dari satu outlet. Dikembangkan dengan **Laravel** (backend API) dan **React** (frontend web). Bisa diakses lewat browser di HP, tablet, atau komputer. Dengan Resik Anda bisa:
+**Resik** adalah aplikasi untuk mengurus usaha laundry dari satu outlet. Dikembangkan dengan **Laravel** dan **React** dalam satu aplikasi web. Bisa diakses lewat browser di HP, tablet, atau komputer. Dengan Resik Anda bisa:
 
 - Mencatat order cucian baru dengan cepat  
 - Menyimpan data pelanggan  
@@ -15,7 +15,7 @@
 - Membuat laporan untuk keperluan arsip atau pajak  
 - Login dengan password (aman di web)  
 
-Data disimpan di server (backend Laravel). Frontend React diakses via browser. Bisa diperluas dengan PWA untuk akses offline di perangkat mobile jika diperlukan.
+Data disimpan di server Laravel; antarmuka React dilayani dari server yang sama. Bisa diperluas dengan PWA untuk akses offline di perangkat mobile jika diperlukan.
 
 ---
 

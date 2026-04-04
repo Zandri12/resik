@@ -1,0 +1,303 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+
+@custom-variant dark (&:is(.dark *));
+@config "../../tailwind.config.js";
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  overflow-x: clip;
+}
+
+#root {
+  min-height: 100dvh;
+  min-width: 0;
+}
+
+.primary-gradient {
+  background: linear-gradient(135deg, #005160 0%, #006b7e 100%);
+}
+
+.custom-shadow {
+  box-shadow: 0px 0px 24px 0px rgba(25, 28, 29, 0.06);
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.sidebar-active {
+  color: #005160;
+  position: relative;
+}
+.sidebar-active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 25%;
+  height: 50%;
+  width: 3px;
+  background-color: #005160;
+}
+
+/* Sonner toast: close button di kanan atas, rapi */
+[data-sonner-toaster] [data-close-button] {
+  position: absolute !important;
+  left: auto !important;
+  right: 0.5rem !important;
+  top: 0.5rem !important;
+  width: 1.75rem !important;
+  height: 1.75rem !important;
+  border-radius: 0.375rem !important;
+  border: none !important;
+  background: transparent !important;
+  color: var(--muted-foreground) !important;
+  cursor: pointer;
+}
+[data-sonner-toaster] [data-close-button]:hover {
+  background: var(--muted) !important;
+  color: var(--foreground) !important;
+}
+
+@media (max-width: 639px) {
+  [data-sonner-toaster] {
+    left: 0.75rem !important;
+    right: 0.75rem !important;
+    width: auto !important;
+    max-width: none !important;
+  }
+}
+
+/* Safe area for notched devices (e.g. iPhone) */
+@supports (padding: env(safe-area-inset-top)) {
+  .login-page {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+    padding-top: max(1rem, env(safe-area-inset-top));
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+  @media (min-width: 640px) {
+    .login-page {
+      padding-left: max(1.5rem, env(safe-area-inset-left));
+      padding-right: max(1.5rem, env(safe-area-inset-right));
+      padding-top: max(1.5rem, env(safe-area-inset-top));
+      padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+    }
+  }
+  @media (min-width: 1024px) {
+    .login-page {
+      padding: max(3rem, env(safe-area-inset-top)) max(3rem, env(safe-area-inset-right))
+        max(3rem, env(safe-area-inset-bottom)) max(3rem, env(safe-area-inset-left));
+    }
+  }
+}
+
+/* Safe area untuk header/main (hindari arbitrary Tailwind dengan koma di dalam [] yang memecah parser) */
+.pt-safe-header {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+.pb-safe-main {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.pb-safe-receipt {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+}
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.52 0.08 250);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.55 0.04 250);
+  --secondary-foreground: oklch(0.22 0.02 250);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.96 0.01 250);
+  --accent-foreground: oklch(0.22 0.02 250);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.52 0.08 250);
+  --chart-1: oklch(0.65 0.08 250);
+  --chart-2: oklch(0.58 0.06 255);
+  --chart-3: oklch(0.52 0.06 258);
+  --chart-4: oklch(0.48 0.05 260);
+  --chart-5: oklch(0.44 0.04 262);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.52 0.08 250);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.96 0.01 250);
+  --sidebar-accent-foreground: oklch(0.22 0.02 250);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.52 0.08 250);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.65 0.08 250);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.32 0.02 250);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.65 0.08 250);
+  --chart-1: oklch(0.65 0.08 250);
+  --chart-2: oklch(0.58 0.06 255);
+  --chart-3: oklch(0.52 0.06 258);
+  --chart-4: oklch(0.48 0.05 260);
+  --chart-5: oklch(0.44 0.04 262);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.65 0.08 250);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.65 0.08 250);
+}
+
+@theme inline {
+  --font-sans: 'Geist Variable', sans-serif;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+/* HTML dari CKEditor di halaman detail konten */
+.article-body-html {
+  @apply max-w-full overflow-x-auto text-on-surface-variant leading-relaxed;
+}
+.article-body-html :where(h1, h2, h3) {
+  @apply font-headline font-bold text-on-surface;
+}
+.article-body-html h1 {
+  @apply text-2xl mt-10 mb-4 first:mt-0;
+}
+.article-body-html h2 {
+  @apply text-xl mt-8 mb-3;
+}
+.article-body-html h3 {
+  @apply text-lg mt-6 mb-2;
+}
+.article-body-html p {
+  @apply mb-4 last:mb-0;
+}
+.article-body-html a {
+  @apply text-primary font-semibold underline-offset-2 hover:underline;
+}
+.article-body-html ul {
+  @apply list-disc pl-6 mb-4 space-y-1;
+}
+.article-body-html ol {
+  @apply list-decimal pl-6 mb-4 space-y-1;
+}
+.article-body-html blockquote {
+  @apply border-l-4 border-primary/40 pl-4 my-4 italic;
+}
+.article-body-html pre {
+  @apply mb-4 overflow-x-auto rounded-xl bg-surface-container-high p-4 text-sm font-mono text-on-surface border border-outline-variant/20;
+}
+.article-body-html code {
+  @apply rounded bg-surface-container-high px-1.5 py-0.5 text-sm font-mono text-on-surface;
+}
+.article-body-html pre code {
+  @apply bg-transparent p-0;
+}
+.article-body-html table {
+  @apply w-full text-sm border-collapse mb-4;
+}
+.article-body-html th,
+.article-body-html td {
+  @apply border border-outline-variant/30 px-3 py-2 align-top;
+}
+.article-body-html th {
+  @apply bg-surface-container-low font-semibold text-on-surface;
+}
+.article-body-html hr {
+  @apply my-8 border-outline-variant/30;
+}
+.article-body-html figure {
+  @apply my-6;
+}
+.article-body-html img {
+  @apply max-w-full h-auto rounded-xl my-4;
+}
+.article-body-html figcaption {
+  @apply text-sm text-on-surface-variant mt-2 text-center;
+}
+
+/* Form admin konten landing — tinggi area ketik CKEditor */
+.landing-content-ckeditor .ck-editor__editable {
+  min-height: 220px;
+}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Exports\ReportExport;
 use App\Http\Controllers\Controller;
 use App\Models\OutletSetting;
 use App\Services\ReportService;
@@ -9,6 +10,7 @@ use App\Services\TelegramNotificationService;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -32,13 +34,29 @@ class ReportController extends Controller
         $data = $this->reportService->getReportData(
             $request->from,
             $request->to,
-            $request->type
+            $request->type,
+            $request->boolean('summary_only')
         );
+
+        if ($request->boolean('summary_only')) {
+            return response()->json([
+                'from' => $data['from'],
+                'to' => $data['to'],
+                'type' => $data['type'],
+                'income' => $data['income'],
+                'income_accrual' => $data['income_accrual'],
+                'total_expenses' => $data['total_expenses'],
+                'profit' => $data['profit'],
+                'profit_accrual' => $data['profit_accrual'],
+                'orders_count' => $data['orders_count'],
+                'expenses_count' => $data['expenses_count'],
+            ]);
+        }
 
         return response()->json($data);
     }
 
-    public function download(Request $request): \Illuminate\Http\Response|StreamedResponse|BinaryFileResponse
+    public function download(Request $request): Response|StreamedResponse|BinaryFileResponse
     {
         if (! $request->user()?->hasPermission('reports.download')) {
             return response()->json(['message' => 'Akses ditolak'], 403);
@@ -67,7 +85,7 @@ class ReportController extends Controller
 
         $fromLabel = Carbon::parse($request->from)->locale('id_ID')->translatedFormat('d M Y');
         $toLabel = Carbon::parse($request->to)->locale('id_ID')->translatedFormat('d M Y');
-        $filename = 'rekapan-' . $request->from . '_' . $request->to;
+        $filename = 'rekapan-'.$request->from.'_'.$request->to;
 
         if ($request->format === 'pdf') {
             $pdf = Pdf::loadView('reports.report-pdf', $data)
@@ -75,10 +93,10 @@ class ReportController extends Controller
                 ->setOption('isRemoteEnabled', true)
                 ->setOption('defaultFont', 'DejaVu Sans');
 
-            return $pdf->stream($filename . '.pdf');
+            return $pdf->stream($filename.'.pdf');
         }
 
-        $export = new \App\Exports\ReportExport($data);
+        $export = new ReportExport($data);
         $filename .= '.xlsx';
 
         return Excel::download($export, $filename);
@@ -110,7 +128,7 @@ class ReportController extends Controller
 
         $fromLabel = Carbon::parse($request->from)->locale('id_ID')->translatedFormat('d M Y');
         $toLabel = Carbon::parse($request->to)->locale('id_ID')->translatedFormat('d M Y');
-        $filename = 'rekapan-' . $request->from . '_' . $request->to;
+        $filename = 'rekapan-'.$request->from.'_'.$request->to;
 
         if ($request->format === 'pdf') {
             $pdf = Pdf::loadView('reports.report-pdf', $data)
@@ -118,23 +136,23 @@ class ReportController extends Controller
                 ->setOption('isRemoteEnabled', true)
                 ->setOption('defaultFont', 'DejaVu Sans');
 
-            $path = 'reports/' . uniqid('report_') . '.pdf';
+            $path = 'reports/'.uniqid('report_').'.pdf';
             Storage::put($path, $pdf->output());
             $fullPath = Storage::path($path);
 
-            $ok = $this->telegram->sendDocument($fullPath, $filename . '.pdf', "Laporan Rekapan\n{$fromLabel} - {$toLabel}");
+            $ok = $this->telegram->sendDocument($fullPath, $filename.'.pdf', "Laporan Rekapan\n{$fromLabel} - {$toLabel}");
 
             Storage::delete($path);
 
             return response()->json(['success' => $ok]);
         }
 
-        $export = new \App\Exports\ReportExport($data);
-        $path = 'reports/' . uniqid('report_') . '.xlsx';
+        $export = new ReportExport($data);
+        $path = 'reports/'.uniqid('report_').'.xlsx';
         Excel::store($export, $path, 'local');
         $fullPath = Storage::path($path);
 
-        $ok = $this->telegram->sendDocument($fullPath, $filename . '.xlsx', "Laporan Rekapan\n{$fromLabel} - {$toLabel}");
+        $ok = $this->telegram->sendDocument($fullPath, $filename.'.xlsx', "Laporan Rekapan\n{$fromLabel} - {$toLabel}");
 
         Storage::delete($path);
 
