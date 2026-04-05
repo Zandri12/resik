@@ -12,11 +12,11 @@ import { cn } from '@/lib/utils'
 
 /** Use on manual `Table` blocks (e.g. dashboard widgets) so they match `DataTable` styling. */
 export const DATA_TABLE_HEADER_ROW_CLASS =
-  'bg-surface-container-high/30 border-0 hover:bg-surface-container-high/30'
+  'border-0 bg-muted/35 hover:bg-muted/35 dark:bg-muted/25 dark:hover:bg-muted/25'
 export const DATA_TABLE_HEADER_CELL_CLASS =
-  'px-6 py-4 text-[11px] font-bold uppercase tracking-widest text-on-surface-variant'
-export const DATA_TABLE_BODY_ROW_CLASS =
-  'border-surface-container/50 hover:bg-surface-container-high/20 group'
+  'px-6 py-4 text-[11px] font-bold uppercase tracking-widest text-muted-foreground'
+/** `group` untuk sel aksi hover; hover/selected mengikuti `TableRow` default (muted). */
+export const DATA_TABLE_BODY_ROW_CLASS = 'group'
 export const DATA_TABLE_BODY_CELL_CLASS = 'px-6 py-5'
 
 type DataTableProps<TData> = {
@@ -52,7 +52,7 @@ export function DataTable<TData>({
                 key={header.id}
                 className={cn(
                   DATA_TABLE_HEADER_CELL_CLASS,
-                  header.column.id === 'select' && 'w-12 rounded-tl-3xl'
+                  header.column.id === 'select' && 'w-12 rounded-tl-2xl'
                 )}
               >
                 {header.isPlaceholder
@@ -71,7 +71,7 @@ export function DataTable<TData>({
           <TableRow>
             <TableCell
               colSpan={span}
-              className="px-6 py-12 text-center text-on-surface-variant"
+              className="px-6 py-12 text-center text-sm text-muted-foreground"
             >
               {loadingMessage}
             </TableCell>
@@ -80,7 +80,7 @@ export function DataTable<TData>({
           <TableRow>
             <TableCell
               colSpan={span}
-              className="px-6 py-12 text-center text-on-surface-variant"
+              className="px-6 py-12 text-center text-sm text-muted-foreground"
             >
               {emptyMessage}
             </TableCell>

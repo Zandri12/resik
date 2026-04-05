@@ -121,7 +121,7 @@ const STATUS_LABEL: Record<string, string> = {
 
 /** Badge status — palet lembut (sama di Order Terbaru & panel status order) */
 const STATUS_CLASS: Record<string, string> = {
-  diterima: 'bg-palette-cream text-on-surface',
+  diterima: 'bg-muted text-on-surface',
   diproses: 'bg-palette-sky text-on-surface',
   selesai: 'bg-palette-purple text-on-surface',
   batal: 'bg-palette-lavender/50 text-on-surface border border-palette-purple/35',
@@ -137,12 +137,12 @@ const INCOME_CHART_COLOR = 'var(--primary)'
 const CHART_STATUS_COLORS: Record<string, string> = {
   diterima: 'bg-palette-sky',
   diproses: 'bg-palette-lavender',
-  selesai: 'bg-palette-cream',
+  selesai: 'bg-palette-purple/50',
   batal: 'bg-palette-purple/80',
   cuci: 'bg-palette-lavender',
   setrika: 'bg-palette-lavender',
-  siap_diambil: 'bg-palette-cream',
-  diambil: 'bg-palette-cream',
+  siap_diambil: 'bg-palette-purple/65',
+  diambil: 'bg-palette-purple',
 }
 
 /** Urutan status di chart (sesuai backend sort_order) */
@@ -1099,7 +1099,7 @@ export default function Dashboard() {
                           variant="secondary"
                           className={cn(
                             'border-0 px-3 py-1 text-[11px] font-bold',
-                            STATUS_CLASS[o.status?.name ?? ''] ?? 'bg-palette-cream text-on-surface-variant'
+                            STATUS_CLASS[o.status?.name ?? ''] ?? 'bg-muted text-on-surface-variant'
                           )}
                         >
                           {STATUS_LABEL[o.status?.name ?? ''] ?? o.status?.name ?? '-'}

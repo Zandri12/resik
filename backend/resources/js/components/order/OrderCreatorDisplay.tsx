@@ -18,14 +18,14 @@ type Props = {
 export function OrderCreatorDisplay({ creator, compact, className }: Props) {
   const name = creator?.name?.trim()
   if (!name) {
-    return <span className={cn('text-xs text-on-surface-variant', className)}>—</span>
+    return <span className={cn('text-xs text-muted-foreground', className)}>—</span>
   }
   return (
     <div className={cn('flex min-w-0 items-center gap-2', className)}>
       <Avatar
         size="sm"
         className={cn(
-          'shrink-0 ring-1 ring-outline-variant/15',
+          'shrink-0 ring-1 ring-border/50',
           compact && '!size-7 text-[9px]'
         )}
       >
@@ -34,7 +34,7 @@ export function OrderCreatorDisplay({ creator, compact, className }: Props) {
       </Avatar>
       <span
         className={cn(
-          'truncate font-medium text-on-surface',
+          'truncate font-medium text-foreground',
           compact ? 'text-xs' : 'text-sm'
         )}
       >

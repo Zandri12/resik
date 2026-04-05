@@ -53,7 +53,27 @@ class OrderController extends Controller
         $perPage = (int) $request->get('per_page', 15);
         $perPage = max(1, min(50, $perPage));
 
-        return $query->orderByDesc('created_at')->paginate($perPage);
+        $sort = $request->query('sort', 'newest');
+        $allowedSorts = ['newest', 'oldest', 'total_high', 'total_low', 'customer_az'];
+        if (! in_array($sort, $allowedSorts, true)) {
+            $sort = 'newest';
+        }
+
+        if ($sort === 'customer_az') {
+            $query->leftJoin('customers', 'orders.customer_id', '=', 'customers.id')
+                ->orderBy('customers.name')
+                ->orderByDesc('orders.created_at')
+                ->select('orders.*');
+        } else {
+            match ($sort) {
+                'oldest' => $query->orderBy('orders.created_at'),
+                'total_high' => $query->orderByDesc('orders.total'),
+                'total_low' => $query->orderBy('orders.total'),
+                default => $query->orderByDesc('orders.created_at'),
+            };
+        }
+
+        return $query->paginate($perPage);
     }
 
     public function store(Request $request)

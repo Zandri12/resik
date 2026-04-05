@@ -28,18 +28,18 @@ export function DataTablePagination({
   return (
     <div
       className={cn(
-        'px-8 py-5 bg-surface-container-low/50 flex items-center justify-between border-t border-outline-variant/10',
+        'flex items-center justify-between border-t border-border/60 bg-muted/25 px-5 py-4 sm:px-6 dark:bg-muted/15',
         className
       )}
     >
-      <p className="text-xs text-on-surface-variant">
+      <p className="text-xs text-muted-foreground">
         Menampilkan {from ?? 0}-{to ?? 0} dari {total} {itemLabel}
       </p>
       <div className="flex gap-2">
         <Button
           variant="outline"
           size="icon"
-          className="h-8 w-8 rounded-lg border-outline-variant/30 bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container"
+          className="h-8 w-8 rounded-lg"
           disabled={currentPage <= 1}
           onClick={() => onPageChange(currentPage - 1)}
         >
@@ -57,12 +57,8 @@ export function DataTablePagination({
             <Button
               key={p}
               size="icon"
-              className={cn(
-                'h-8 w-8 rounded-lg text-xs font-bold',
-                p === currentPage
-                  ? 'bg-primary text-on-primary'
-                  : 'bg-surface-container-lowest border border-outline-variant/30 text-on-surface-variant hover:bg-surface-container'
-              )}
+              variant={p === currentPage ? 'default' : 'outline'}
+              className="h-8 w-8 rounded-lg text-xs font-bold"
               onClick={() => onPageChange(p)}
             >
               {p}
@@ -72,7 +68,7 @@ export function DataTablePagination({
         <Button
           variant="outline"
           size="icon"
-          className="h-8 w-8 rounded-lg border-outline-variant/30 bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container"
+          className="h-8 w-8 rounded-lg"
           disabled={currentPage >= lastPage}
           onClick={() => onPageChange(currentPage + 1)}
         >

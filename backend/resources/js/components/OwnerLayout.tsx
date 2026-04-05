@@ -23,7 +23,7 @@ export default function OwnerLayout() {
             <SidebarBrand />
             <nav className="min-h-0 flex-1 overflow-y-auto px-2 pb-2">
               <ClickSpark
-                sparkColor="#005160"
+                sparkColor="#9B8EC7"
                 sparkSize={10}
                 sparkRadius={15}
                 sparkCount={8}
@@ -40,7 +40,7 @@ export default function OwnerLayout() {
       <main className="pb-safe-main ml-0 flex min-h-screen min-h-[100dvh] min-w-0 flex-1 flex-col bg-surface md:ml-64">
         <Navbar onOpenMobileNav={() => setMobileNavOpen(true)} />
         <ClickSpark
-          sparkColor="#005160"
+          sparkColor="#9B8EC7"
           sparkSize={10}
           sparkRadius={15}
           sparkCount={8}

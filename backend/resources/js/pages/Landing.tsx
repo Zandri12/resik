@@ -121,7 +121,7 @@ export default function Landing() {
       <header className="pt-safe-header sticky top-0 z-50 border-b border-outline-variant/20 bg-surface/80 backdrop-blur-lg">
         <div className="mx-auto flex h-20 w-full min-w-0 max-w-7xl items-center px-4 sm:px-6 lg:px-10">
           <ClickSpark
-            sparkColor="#005160"
+            sparkColor="#9B8EC7"
             sparkSize={10}
             sparkRadius={15}
             sparkCount={8}
@@ -212,7 +212,7 @@ export default function Landing() {
 
       <main className="pb-[calc(4.25rem+env(safe-area-inset-bottom,0px))] md:pb-0">
         <ClickSpark
-          sparkColor="#005160"
+          sparkColor="#9B8EC7"
           sparkSize={10}
           sparkRadius={15}
           sparkCount={8}
@@ -223,7 +223,7 @@ export default function Landing() {
         <section className="relative overflow-hidden bg-surface pt-12 pb-16 sm:pt-16 sm:pb-24 lg:pt-24 lg:pb-32">
           <div className="max-w-7xl mx-auto w-full min-w-0 px-4 sm:px-6 lg:px-10 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16 lg:items-center">
             <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-palette-cream text-on-surface text-xs font-bold uppercase tracking-wider mb-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted text-on-surface text-xs font-bold uppercase tracking-wider mb-6">
                 <Icon name="verified" className="text-sm" />
                 <span>Premium Quality Laundry</span>
               </div>

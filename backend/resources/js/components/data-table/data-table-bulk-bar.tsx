@@ -38,7 +38,7 @@ export function DataTableBulkBar({
         className
       )}
     >
-      <span className="font-semibold text-on-surface">
+      <span className="font-semibold text-foreground">
         {selectedCount} dipilih
       </span>
       <DropdownMenu>
@@ -70,7 +70,7 @@ export function DataTableBulkBar({
           type="button"
           variant="ghost"
           size="sm"
-          className="text-on-surface-variant"
+          className="text-muted-foreground"
           onClick={onClear}
         >
           Batal pilih

@@ -59,7 +59,7 @@ export default function LandingContentDetail() {
       <header className="pt-safe-header sticky top-0 z-50 border-b border-outline-variant/20 bg-surface/80 backdrop-blur-lg">
         <div className="mx-auto flex h-16 w-full min-w-0 max-w-3xl items-center px-4 sm:px-6">
           <ClickSpark
-            sparkColor="#005160"
+            sparkColor="#9B8EC7"
             sparkSize={10}
             sparkRadius={15}
             sparkCount={8}
@@ -85,7 +85,7 @@ export default function LandingContentDetail() {
 
       <main className="mx-auto w-full min-w-0 max-w-3xl px-4 py-8 sm:px-6 sm:py-10 lg:py-14">
         <ClickSpark
-          sparkColor="#005160"
+          sparkColor="#9B8EC7"
           sparkSize={10}
           sparkRadius={15}
           sparkCount={8}

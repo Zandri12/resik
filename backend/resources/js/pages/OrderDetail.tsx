@@ -456,7 +456,7 @@ export default function OrderDetail() {
                 'inline-flex items-center rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide',
                 paid >= total && total > 0
                   ? 'bg-palette-purple/25 text-on-surface border border-palette-purple/35'
-                  : 'bg-palette-cream text-on-surface border border-outline-variant/30'
+                  : 'bg-muted text-on-surface border border-outline-variant/30'
               )}
             >
               {total <= 0 ? 'Nominal' : paid >= total ? 'Sudah lunas' : 'Belum lunas'}
@@ -931,7 +931,7 @@ export default function OrderDetail() {
                     </span>
                   </div>
                   {kembalianPreview > 0 && (
-                    <div className="flex justify-between items-center gap-3 rounded-lg bg-palette-cream/40 border border-outline-variant/20 px-3 py-2">
+                    <div className="flex justify-between items-center gap-3 rounded-lg bg-muted/80 border border-outline-variant/20 px-3 py-2">
                       <span className="text-sm font-bold text-on-surface">Kelebihan / kembalian</span>
                       <span className="font-bold text-on-surface tabular-nums">{fmt(kembalianPreview)}</span>
                     </div>

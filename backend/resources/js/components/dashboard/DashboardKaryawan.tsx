@@ -57,7 +57,7 @@ const STATUS_LABEL: Record<string, string> = {
 }
 
 const STATUS_CLASS: Record<string, string> = {
-  diterima: 'bg-palette-cream text-on-surface',
+  diterima: 'bg-muted text-on-surface',
   diproses: 'bg-palette-sky text-on-surface',
   selesai: 'bg-palette-purple text-on-surface',
   batal: 'bg-palette-lavender/50 text-on-surface border border-palette-purple/35',

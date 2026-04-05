@@ -8,7 +8,7 @@ export default function Sidebar() {
       <SidebarBrand />
       <nav className="mt-4 flex min-h-0 flex-1 flex-col px-2">
         <ClickSpark
-          sparkColor="#005160"
+          sparkColor="#9B8EC7"
           sparkSize={10}
           sparkRadius={15}
           sparkCount={8}

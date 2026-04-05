@@ -4,7 +4,7 @@ import ClickSpark from '@/components/ClickSpark'
 export default function ForgotPassword() {
   return (
     <ClickSpark
-      sparkColor="#005160"
+      sparkColor="#9B8EC7"
       sparkSize={10}
       sparkRadius={15}
       sparkCount={8}

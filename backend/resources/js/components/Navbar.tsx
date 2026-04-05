@@ -69,7 +69,7 @@ export default function Navbar({ searchPlaceholder, onOpenMobileNav }: NavbarPro
   return (
     <header className="pt-safe-header sticky top-0 z-10 border-b border-outline-variant/10 bg-surface-bright/80 backdrop-blur-md">
       <ClickSpark
-        sparkColor="#005160"
+        sparkColor="#9B8EC7"
         sparkSize={10}
         sparkRadius={15}
         sparkCount={8}
